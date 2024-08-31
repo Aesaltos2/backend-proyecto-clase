@@ -24,9 +24,9 @@ class AuthController {
   }
 
   static async login (req, res) {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    const usuario = await Usuario.findOne({ username })
+    const usuario = await Usuario.findOne({ email })
     if (!usuario) return res.status(404).json({ message: 'El usuario no existe' })
 
     const isValid = await bcrypt.compare(password, usuario.password)
